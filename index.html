@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#02030a" />
+    <meta
+      name="description"
+      content="A real-time Schwarzschild black hole rendered by integrating null geodesics on the GPU."
+    />
+    <title>Gargantua — Null Geodesic Study</title>
+  </head>
+  <body>
+    <main id="app">
+      <canvas id="viewport" aria-label="Interactive gravitationally lensed black hole"></canvas>
+
+      <header class="title-block">
+        <p class="eyebrow">NULL GEODESIC STUDY / 01</p>
+        <h1>GARGANTUA</h1>
+        <p class="subtitle">Real-time Schwarzschild lensing</p>
+      </header>
+
+      <aside class="controls" aria-label="Render controls">
+        <div class="controls__head">
+          <span>OBSERVATORY</span>
+          <button id="panel-toggle" type="button" aria-expanded="true" aria-controls="control-body">−</button>
+        </div>
+        <div id="control-body" class="controls__body">
+          <label>
+            <span>Disk inclination <output id="tilt-value">−8°</output></span>
+            <input id="tilt" type="range" min="-30" max="35" step="1" value="-8" />
+          </label>
+          <label>
+            <span>Disk luminosity <output id="luminosity-value">1.20</output></span>
+            <input id="luminosity" type="range" min="0.45" max="2.2" step="0.05" value="1.2" />
+          </label>
+          <label>
+            <span>Bloom <output id="bloom-value">0.55</output></span>
+            <input id="bloom" type="range" min="0" max="1.5" step="0.02" value="0.55" />
+          </label>
+          <label>
+            <span>Integrator</span>
+            <select id="quality">
+              <option value="220">Performance · 220</option>
+              <option value="340" selected>Balanced · 340</option>
+              <option value="520">Precision · 520</option>
+            </select>
+          </label>
+          <button id="autorotate" class="mode-button" type="button" aria-pressed="false">
+            <span>Orbital drift</span><span class="mode-button__state">OFF</span>
+          </button>
+        </div>
+      </aside>
+
+      <footer class="telemetry">
+        <div><span>METRIC</span><strong>SCHWARZSCHILD</strong></div>
+        <div><span>EVENT HORIZON</span><strong>2.00 GM/c²</strong></div>
+        <div><span>PHOTON SPHERE</span><strong>3.00 GM/c²</strong></div>
+        <div><span>ISCO</span><strong>6.00 GM/c²</strong></div>
+        <div><span>FRAME</span><strong id="fps">— FPS</strong></div>
+      </footer>
+
+      <div class="reticle" aria-hidden="true"><span></span><span></span></div>
+      <div id="loading" class="loading"><span></span>INITIALIZING GEODESICS</div>
+      <div id="error" class="error" hidden></div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
